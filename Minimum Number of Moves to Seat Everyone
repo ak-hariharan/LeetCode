@@ -1,0 +1,23 @@
+class Solution {
+    public int minMovesToSeat(int[] seats, int[] students) {
+        Arrays.sort(seats);
+        Arrays.sort(students);
+        
+        int n = seats.length;
+        int totalMoves = 0;
+        int i = 0, j = 0;
+        
+        while (i < n && j < n) {
+            if (students[j] >= seats[i] || seats[i] >= students[j]) {
+                totalMoves += Math.abs(students[i] - seats[i]);
+                i++;
+                j++;
+            }
+            else{
+                i++;
+            }
+        }
+        
+        return totalMoves;
+    }
+}
