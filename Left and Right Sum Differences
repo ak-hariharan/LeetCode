@@ -1,0 +1,21 @@
+class Solution {
+    public int[] leftRightDifference(int[] nums) {
+        int [] result = new int[nums.length];
+        int [] leftArray = new int[nums.length];
+        int [] rightArray = new int[nums.length];
+        leftArray[0] = 0;
+        rightArray[nums.length - 1] = 0;
+        for(int i = 1; i < nums.length; i += 1){
+            leftArray[i] = leftArray[i - 1] + nums[i - 1];
+        }
+        for(int j = nums.length - 2; j >= 0; j -= 1){
+            rightArray[j] = rightArray[j + 1] + nums[j + 1];
+        }
+        for(int k = 0; k < nums.length; k += 1){
+            result[k] = Math.abs(leftArray[k] - rightArray[k]);
+        }
+
+        return result;
+
+    }
+}
