@@ -1,0 +1,31 @@
+class Solution {
+    public int sumIndicesWithKSetBits(List<Integer> nums, int k) {
+        int res=0;
+        for(int i=0;i<nums.size();i++) 
+            //calling the function
+            //i = 1 == 1
+            if(countBits(i)==k) 
+                //res = res + nums.get(i)
+                //0 = 0 + 4 => res = 4
+                res+=nums.get(i);
+                 
+        return res;
+        //res = .. + 4 
+    }
+    int countBits(int n) {
+        int cnt=0;
+        //do unitll the 'n' values equal to zero or it finishes
+        while(n!=0) {
+            //assume n = 4
+            //1=> 0 = 0 + (100 & 1) => cnt = 0
+            //2=> 0 = 0 + (10 & 1)  => cnt = 0
+            //3=> 0 = 0 + (1 & 1)   => cnt = 1
+            cnt+=(n&1);
+            //1=> rightshift happens  100 => 10
+            //2=> rightshift happens  10 => 1
+            n=n>>1;
+        }
+        return cnt;
+        //cnt = 1
+    }
+}
