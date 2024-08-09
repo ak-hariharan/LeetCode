@@ -1,0 +1,22 @@
+class Solution {
+    public int[] findIntersectionValues(int[] nums1, int[] nums2) {
+        Set<Integer> set1 = new HashSet<>();
+        Set<Integer> set2 = new HashSet<>();
+        int [] res = new int[2];
+
+        for(int num1 : nums1){
+            set1.add(num1);
+        }
+        for(int num2 : nums2){
+            set2.add(num2);
+        }
+
+        for(int num : nums1){
+            res[0] += set2.contains(num)? 1 : 0;
+        }
+        for(int num : nums2){
+            res[1] += set1.contains(num)? 1 : 0;
+        }
+        return res;
+    }
+}
