@@ -1,0 +1,15 @@
+class Solution {
+    public int minBitFlips(int start, int goal) {
+        int count = 0;
+        int k = 0;
+        while (start != goal) {
+            if ((start & (1 << k)) != (goal & (1 << k))) {
+                count++;
+                // Toggle the k-th bit
+                start ^= (1 << k);
+            }
+            k++;
+        }
+        return count;
+    }
+}
