@@ -1,0 +1,22 @@
+class Solution {
+    public int scoreOfString(String s) {
+        char [] c = s.toCharArray();
+        int score = 0;
+        int sum = 0;
+    
+        for(int i = 0, j = 1; i < c.length; i += 1, j +=1){
+            
+            if(j == c.length){
+                break;
+            }
+            sum = (int)c[i] - (int)c[j];
+            if(sum < 0){
+                sum = sum * -1;
+            }
+            score += sum;
+            sum = 0;
+            
+        }
+        return score;
+    }
+}
