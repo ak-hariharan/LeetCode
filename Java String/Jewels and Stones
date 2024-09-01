@@ -1,0 +1,15 @@
+class Solution {
+    public int numJewelsInStones(String jewels, String stones) {
+        char [] c = jewels.toCharArray();
+        char [] d = stones.toCharArray();
+        int count = 0;
+        for(int i = 0; i < c.length; i += 1){
+            for(int j = 0; j < d.length; j += 1){
+                if(c[i] == d[j]){
+                    count+=1;
+                }
+            }
+        }
+        return count;
+    }
+}
