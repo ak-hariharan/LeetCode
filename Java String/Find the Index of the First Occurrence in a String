@@ -1,0 +1,25 @@
+class Solution {
+    public int strStr(String haystack, String needle) {
+        int n = haystack.length();
+        int m = -1;
+        boolean found = false; 
+        // Flag to stop outer loop
+    
+        // Loop for starting point
+        for (int i = 0; i < n; i++) {
+            // Loop for length of substring
+            for (int j = i + 1; j <= n; j++) {
+                // Print substring from i to j
+                if(haystack.substring(i, j).equals(needle)){
+                    m = i;
+                    found = true; // Set flag to true
+                    break; // Break inner loop
+                }
+            }
+            if(found) { // Check flag to break outer loop
+                break;
+            }
+        }
+        return m;
+    }
+}
