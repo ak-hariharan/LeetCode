@@ -1,0 +1,16 @@
+class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+        int one[] = new int[26];
+        for(char s : magazine.toCharArray()){
+            one[s - 'a'] += 1;
+        }
+        for(char t : ransomNote.toCharArray()){
+            
+            if(one[t - 'a'] == 0){
+                return false;
+            }
+            one[t - 'a'] -= 1;
+        }
+        return true;
+    }
+}
