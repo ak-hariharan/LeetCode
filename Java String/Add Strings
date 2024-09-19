@@ -5,6 +5,10 @@ class Solution {
         int carry = 0;
         StringBuilder sb = new StringBuilder();
         while(aLen >= 0 || bLen >= 0 || carry == 1){
+        // carry == 1 --- means
+        // When you're adding digits from num1 and num2, 
+        // the sum of any two digits can only range from 0 to 18 
+        // (since 9 + 9 = 18 is the maximum possible sum of two digits). carry /= 10 => 1 or 0(always)
             if(aLen >= 0){
                 carry += num1.charAt(aLen) - '0';
                 aLen -= 1;
@@ -13,7 +17,12 @@ class Solution {
                 carry += num2.charAt(bLen) - '0';
                 bLen-= 1;
             }
+            // inserting into the 0th position in a StringBuilder does not replace 
+            // the current value at the 0th position. Instead, it shifts all the 
+            // existing characters to the right and inserts the new value at the 0th position.
+            // So, nothing is overwritten.
             sb.insert(0 , carry % 10);
+
             carry /= 10;
             
         }
