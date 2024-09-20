@@ -1,0 +1,28 @@
+class Solution {
+    public String addBinary(String a, String b) {
+
+        // similar problem of addtion of two numbers - Add Strings
+        int aLen = a.length() - 1;
+        int bLen = b.length() - 1;
+        int carry = 0;
+        StringBuilder sb = new StringBuilder();
+        while(aLen >= 0 || bLen >= 0 || carry == 1){
+            if(aLen >= 0){
+                carry += a.charAt(aLen) - '0';
+                aLen --;
+            }
+            if(bLen >= 0){
+                carry += b.charAt(bLen) - '0';
+                bLen --;
+            }
+            // Atmost value of two digit is 1 + 1 = 2
+            // 2 % 2 = 0 that will insert to string 
+            // 1 + 0 = 1 => 1 % 2 = 1 that will insert to string 
+            sb.insert(0,carry % 2);
+            // carry is updated by 2 / 2 = 1 (or)
+            // 1 / 2 = 0 
+            carry /= 2;
+        }
+        return sb.toString();
+    }
+}
