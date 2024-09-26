@@ -1,0 +1,24 @@
+class Solution {
+    public int findLUSlength(String a, String b) {
+        if(a.equals(b)){
+            return -1;
+        }
+        else{
+            return Math.max(a.length(), b.length());
+        }
+    }
+}
+
+// If a = "abc" and b = "abcd":
+
+// The string "abc" is a subsequence of "abcd", so "abc" is not an uncommon subsequence.
+// However, the entire string "abcd" cannot be a subsequence of "abc", because "abcd" is longer and includes an extra character "d". So, "abcd" is the longest uncommon subsequence between the two strings.
+// Therefore, the answer is the length of the longer string "abcd", which is 4.
+
+// Why don't we pick shorter subsequences like "abc"?
+
+// The question asks for the longest uncommon subsequence, and the whole string itself ("abcd") is the longest possible subsequence that doesn't appear in the other string.
+
+// If a and b are different, just return the length of the longer string because that entire string cannot be a subsequence of the shorter one.
+
+// If a and b are the same, return -1, since there is no uncommon subsequence.
