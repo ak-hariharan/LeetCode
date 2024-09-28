@@ -1,0 +1,11 @@
+class Solution {
+    public boolean checkRecord(String s) {
+        if (s.contains("LLL")) {
+            return false; // Was absent for 3 consecutive days
+        }
+        if (s.indexOf('A') != s.lastIndexOf('A')) {
+            return false; // Was absent more than once
+        }
+        return true; // Passed both the conditions
+    }
+}
