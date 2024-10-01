@@ -1,0 +1,26 @@
+class Solution {
+    public String[] findRestaurant(String[] list1, String[] list2) {
+        ArrayList<String> res = new ArrayList<String>();
+        int min = Integer.MAX_VALUE;
+        for (int i = 0; i < list1.length; i += 1) {
+            for (int j = 0; j < list2.length; j += 1) {
+                if (list1[i].equals(list2[j])) {
+                    // Check if the sum is less than min
+                    if (i + j < min) {
+                        res.clear();
+                        res.add(list1[i]);
+                        min = i + j;
+                    }
+                    // we need else if in the case if the sum value is equal to 
+                    // min. becuase we should not clear the previous string value.
+                    else if(i + j == min){
+                        res.add(list1[i]);
+                    }
+                    break;
+                }
+            }
+        }
+        String[] arr = res.toArray(new String[0]);
+        return arr;
+    }
+}
