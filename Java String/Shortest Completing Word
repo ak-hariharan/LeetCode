@@ -1,0 +1,34 @@
+class Solution {
+    public String shortestCompletingWord(String licensePlate, String[] words) {
+        StringBuilder a = new StringBuilder();
+        String result = null;
+        for(char c : licensePlate.toCharArray()){
+            if(Character.isLetter(c)){
+                a.append(Character.toLowerCase(c));
+            }
+        }
+        
+        for(int i = 0; i < words.length; i++){
+            if(containsAllCharacters(words[i], a.toString())){
+                if(result == null || words[i].length() < result.length()){
+                    result = words[i];
+                }
+            }
+        }
+        return result;
+    }
+    public static boolean containsAllCharacters(String word, String a){
+        int[] count = new int[26];
+        for(char c : word.toCharArray()){
+            count[c - 'a']++;
+        }
+        for(char c : a.toCharArray()){
+            // if any other alphabet has been found, return instantly false to it
+            if(count[c - 'a'] == 0){
+                return false;
+            }
+            count[c - 'a']--;
+        }
+        return true;
+    }
+}
