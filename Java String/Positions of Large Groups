@@ -1,0 +1,64 @@
+In a string s of lowercase letters, these letters form consecutive groups of the same character.
+
+For example, a string like s = "abbxxxxzyy" has the groups "a", "bb", "xxxx", "z", and "yy".
+
+A group is identified by an interval [start, end], where start and end denote the start and end indices (inclusive) of the group. 
+In the above example, "xxxx" has the interval [3,6].
+
+A group is considered large if it has 3 or more characters.
+
+Return the intervals of every large group sorted in increasing order by start index.
+
+ 
+
+Example 1:
+
+Input: s = "abbxxxxzzy"
+Output: [[3,6]]
+Explanation: "xxxx" is the only large group with start index 3 and end index 6.
+
+Example 2:
+
+Input: s = "abc"
+Output: []
+Explanation: We have groups "a", "b", and "c", none of which are large groups.
+Example 3:
+
+Input: s = "abcdddeeeeaabbbcd"
+Output: [[3,5],[6,9],[12,14]]
+Explanation: The large groups are "ddd", "eeee", and "bbb".
+ 
+
+Constraints:
+
+1 <= s.length <= 1000
+s contains lowercase English letters only.
+
+class Solution {
+    public List<List<Integer>> largeGroupPositions(String s) {
+       List<List<Integer>> result = new ArrayList<>();
+        int start = 0; // Start index of the current group
+        
+        for (int i = 1; i <= s.length(); i++) {
+            // i == s.length() => Check if we reached the end of the string or the character changes
+            // in the case of s = "abccc", the outer loop will indeed reach the end of the string 
+            // when i == s.length(). However, without explicitly handling 
+            // the last group (as we do with i == s.length()), the final group ("ccc") might be missed  
+            // because the loop doesn't automatically process the group at the end unless triggered 
+            // by a character change.
+            if (i == s.length() || s.charAt(i) != s.charAt(start)) {
+                // Check if the group length is 3 or more
+                if (i - start >= 3) {
+                    List<Integer> group = new ArrayList<>();
+                    group.add(start);       // Add start index
+                    group.add(i - 1);       // Add end index (i - 1)
+                    result.add(group);      // Add the group to the result list
+                }
+                // Move start to the current index
+                start = i;  
+            }
+        }
+        
+        return result;
+    }
+}
