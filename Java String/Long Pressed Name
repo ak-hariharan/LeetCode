@@ -1,0 +1,49 @@
+Your friend is typing his name into a keyboard. Sometimes, when typing a character c, 
+the key might get long pressed, and the character will be typed 1 or more times.
+
+You examine the typed characters of the keyboard. 
+Return True if it is possible that it was your friends name, with some characters (possibly none) being long pressed.
+
+Example 1:
+
+Input: name = "alex", typed = "aaleex"
+Output: true
+Explanation: 'a' and 'e' in 'alex' were long pressed.
+
+Example 2:
+
+Input: name = "saeed", typed = "ssaaedd"
+Output: false
+Explanation: 'e' must have been pressed twice, but it was not in the typed output.
+ 
+
+Constraints:
+
+1 <= name.length, typed.length <= 1000
+name and typed consist of only lowercase English letters.
+
+class Solution {
+    public boolean isLongPressedName(String name, String typed) {
+        int i = 0; // Pointer for name
+        int j = 0; // Pointer for typed
+
+        // Loop through each character in typed
+        while (j < typed.length()) {
+            if (i < name.length() && name.charAt(i) == typed.charAt(j)) {
+                // Case 1: Characters match, move both pointers forward
+                i++;
+            } else if (j > 0 && typed.charAt(j) == typed.charAt(j - 1)) {
+                // Case 2: Long press scenario, current typed char matches the previous one
+                // We can skip it as this is valid long press
+            } else {
+                // If neither condition is satisfied, return false
+                return false;
+            }
+            // Move pointer j to the next character in typed
+            j++;
+        }
+
+        // After loop, ensure all characters of name were matched
+        return i == name.length();
+    }
+}
