@@ -1,0 +1,25 @@
+ToggleString
+The problem is to modify the uppercase and lowercase of the string elements without the any built-in function.
+
+class ToggleString {
+    public static void main(String[] args) {
+        String a_name = "Hari";
+        String output = "";
+        int length_of_the_string = a_name.length();
+        for(int i = 0; i < length_of_the_string; i += 1){
+            if((int)a_name.charAt(i) < 91){
+                int a = (int)a_name.charAt(i) + 32;
+                output = output + (char) a;
+            }
+            else{
+                int a = (int)a_name.charAt(i) - 32;
+                output = output + (char) a;
+            }
+            
+        }
+        System.out.println(output);
+    }
+}
+
+Output
+hARI
